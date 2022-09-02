@@ -1,0 +1,218 @@
+﻿@import url("https://fonts.googleapis.com/css2?family=Cairo&family=Fira+Sans:ital,wght@1,200&family=Tajawal:wght@400;500&display=swap");
+
+// Navbar
+#Navbar {
+    box-shadow: 5px 5px 5px rgb(212, 210, 210);
+    border-radius: 0 0 10px 30px;
+    padding: 0;
+
+    .navbar-brand {
+        height: 80px;
+
+        img {
+            height: 100%;
+        }
+    }
+
+    .divSearch {
+        width: 430px;
+
+        .input-group {
+            width: 80%;
+            margin: 10px auto;
+
+            input {
+                border-radius: 0 20px 0 0px;
+                box-shadow: 3px 3px 4px rgb(189, 188, 188);
+                border: 0;
+                background-color: rgba(235, 232, 232, 0.719);
+
+                &:focus {
+                    box-shadow: 2px 2px 10px rgb(212, 210, 210);
+                }
+            }
+
+            button {
+                background-color: rgba(235, 232, 232, 0.719);
+                box-shadow: 3px 3px 4px rgb(189, 188, 188);
+
+                &:focus {
+                    box-shadow: 2px 2px 10px rgb(212, 210, 210);
+                }
+            }
+        }
+    }
+}
+
+.ShowUser {
+    background-color: rgb(248, 246, 246);
+    height: calc(100% - 90px);
+
+    header {
+        width: 100%;
+        height: 60px;
+        padding: 30px;
+
+        h3 {
+            float: left;
+            font-size: 22px;
+            font-weight: bold;
+            color: rgba(79, 73, 116, 0.651);
+        }
+
+        a {
+            float: right;
+            border-radius: 20px;
+            font-size: 13px;
+            box-shadow: 1px 2px 4px rgb(189, 188, 188);
+            font-weight: bolder;
+            border: 2px solid rgba(79, 73, 116, 0.651);
+            color: rgba(79, 73, 116, 0.651);
+
+            &:hover {
+                background-color: rgba(79, 73, 116, 0.651);
+                color: white;
+            }
+        }
+    }
+
+    .getUsers {
+        height: 70vh;
+        width: 100%;
+        overflow-y: auto;
+        padding: 70px 20px;
+
+        .col {
+            margin-bottom:5%;
+            .card {
+                border-radius: 20px;
+                box-shadow: 4px 4px 5px rgb(189, 188, 188);
+                cursor: pointer;
+                text-decoration: none;
+                min-height: 100%;
+
+                .user-picture img {
+                    position: absolute;
+                    top: -30%;
+                    height: 100px;
+                    width: 100px;
+                    right: 5%;
+                    background: #f8f9fa !important;
+                }
+
+                .user-content {
+                    .user-name {
+                        margin: 0 0 20px 0;
+                        width: 60%;
+                        font-size: 19px;
+                    }
+
+                    p {
+                        font-size: 12px;
+                    }
+                }
+
+                &:hover {
+                    box-shadow: 6px 6px 7px rgb(160, 156, 156);
+                }
+            }
+        }
+    }
+}
+// Edit Profile
+.Editprofile {
+    font-family: "Tajawal", sans-serif;
+    border-radius: 20px;
+    height: auto;
+    .modal-header {
+        height: 50px;
+        font-weight: bolder;
+    }
+    .naming {
+        cursor: pointer;
+        width: 100%;
+        text-align: center;
+        margin-top: 25px;
+        p {
+            margin: 2px;
+            select {
+                text-align: center;
+                border: 0;
+                line-height: 13px;
+
+                &:focus {
+                    outline: none;
+                }
+            }
+            input {
+                text-align: center;
+                height: 30px;
+                font-weight: 600;
+            }
+        }
+        h3 {
+            textarea {
+                color: indigo;
+                font-size: 27px;
+                font-weight: 600;
+                text-align: center;
+                overflow: hidden;
+                height: 45px;
+                min-height: 45px;
+                max-height: 70px;
+                
+                resize: none;
+
+                &:hover {
+                    resize: vertical;
+                }
+            }
+        }
+    }
+    .img-place {
+        img {
+            width: 200px;
+            display: block;
+            margin: 0px auto;
+            cursor: pointer;
+        }
+    }
+    .address {
+        textarea {
+            cursor: pointer;
+            font-size: 14px;
+            color: #5c5a5a;
+            text-align: center;
+            min-height: 80px;
+            max-height: 100px;
+            resize: none;
+
+            &:hover {
+                resize: vertical;
+            }
+        }
+    }
+
+    .error {
+        color: red;
+        font-weight: 500;
+        width:100%;
+        text-align:center;
+        font-size: 14px;
+    }
+}
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 5px grey;
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 3px;
+}
+::-webkit-scrollbar-thumb {
+    background: gray;
+    border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #646d6d;
+}

@@ -1,0 +1,60 @@
+﻿@model string
+@{ 
+    ViewData["Title"] = "Error Page";
+}
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <style>
+            .container {
+                height: 500px;
+                text-align: center;
+                margin-top: 100px;
+                width: 50%;
+            }
+
+                .container * {
+                    margin: 20px;
+                }
+
+            span {
+                font-size: 75px;
+                color: maroon;
+                font-weight: 800;
+            }
+
+            h1 {
+                font-weight: 800;
+            }
+        </style>
+    </head>
+    <body>
+        @if (Model == "")
+        {
+        <div class="container d-none" id="ErrorNotFound">
+            <span>404</span>
+            <h1>
+                User Not Found
+            </h1>
+            <p>
+                Please Check the User Name
+            </p>
+        </div>
+        }
+        else
+        {
+            <div class="container">
+                <img width="120" height="100" src="/Images/ErrorServer.png" />
+                <h1>
+                    Unknown Server Error
+                </h1>
+                <p>
+                    Sorry! Due to an unknow error that occurred in our server.
+                    the page cannot be opened now .<br>
+                        Please Try Again later.
+                </p>
+            </div>
+        }
+
+    </body>
+</html>

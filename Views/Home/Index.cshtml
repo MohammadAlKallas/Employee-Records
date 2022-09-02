@@ -1,0 +1,183 @@
+﻿@model IEnumerable<Employee>
+@{
+    ViewData["Title"] = "Employee Records";
+}
+<!DOCTYPE html>
+<html lang="en">
+<body>
+
+    @await Html.PartialAsync("ErrorPages","")
+
+    <!--  Div Show User -->
+    <div class="ShowUser">
+        <div class="container-fluid">
+            <header>
+                <h3>User Management</h3>
+                <a class="btn" data-bs-toggle="modal" data-bs-target="#AddUser">ADD USER +</a>
+            </header>
+            <div class="getUsers">
+                <div class="row row-cols-lg-5 row-cols-md-3 row-cols-2 gy-5">
+                    @foreach (var item in Model)
+                    {
+                        <div class="col">
+                            <a class="card" id="card"
+                               onclick="EditEmployee(@item.ID)"
+                               data-bs-toggle="modal" data-bs-target="#EditProfile">
+                                <div class="card-body">
+                                    <div class="user-picture m-5 m-md-0">
+                                        @if (item.File !=null)
+                                        {
+                                            <img src="data:image/;base64, @Convert.ToBase64String(item.File.Image)" class="shadow-sm rounded-circle" />
+                                        }
+                                        else
+                                        {
+                                            <img src="~/Images/UserImage.png" class="shadow-sm rounded-circle" />
+                                        }
+                                    </div>
+                                    <div class="user-content">
+                                        <h5 class="text-capitalize user-name">@item.Name</h5>
+                                        <p class=" text-capitalize text-muted blockquote-footer">@item.Departments.DeptName</p>
+                                        <p class="small text-muted mb-0">@item.Address</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Edit -->
+    <div class="modal fade Editprofile" id="EditProfile">
+        <div class="modal-dialog">
+            <form id="formEdit" asp-action="Edit" asp-controller="Home" method="post" enctype="multipart/form-data">
+                <div class="modal-content">
+                    <input type="hidden" id="IdUser" name="id" />
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">Edit Profile</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row row-cols-lg-2">
+                            <div class="col">
+                                <div class="img-place">
+                                    <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp"
+                                         alt="Photo Profile"
+                                         class="rounded-pill img-thumbnail shadow"
+                                         data-bs-toggle="tooltip"
+                                         data-bs-title="Click to Change Image"
+                                         data-bs-placement="left"
+                                         id="imgUser"
+                                         onclick="changeImage(this)" />
+                                    <input type="file" id="fileEdit" accept="image/*" name="file" class="d-none">
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="naming">
+                                    <h3 data-bs-toggle="tooltip"
+                                        data-bs-title="Click to Change UserName"
+                                        data-bs-placement="right">
+                                        <textarea maxlength="30" id="UserName" name="Name"
+                                                  class="form-control-plaintext"></textarea>
+                                    </h3>
+                                    <p data-bs-toggle="tooltip"
+                                       data-bs-title="Click to Change Birth Day"
+                                       data-bs-placement="right">
+                                        <input type="date" name="DateOfBirth" id="BirthDay"
+                                               class="form-control-plaintext"
+                                               value="2022-12-12">
+                                    </p>
+
+                                    <p data-bs-toggle="tooltip"
+                                       data-bs-title="Click to Change Deparment Name"
+                                       data-bs-placement="right">
+                                        <select maxlength="18" name="DepartmentID" id="DeptName"
+                                                class="form-control">
+                                            @foreach (var item in TempData["AllDept"] as IEnumerable<Department>)
+                                            {
+                                                <option value="@item.ID">@item.DeptName</option>
+                                            }
+                                        </select>
+                                    </p>
+                                </div>
+                                <div class="address" data-bs-toggle="tooltip"
+                                     data-bs-title="Click to Change Address"
+                                     data-bs-placement="right">
+                                    <textarea maxlength="100" id="address"
+                                              name="Address" class="form-control-plaintext"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <a id="DeleteUser" class="btn btn-danger pt-1 pb-1">Delete User</a>
+                        <button type="submit" class="btn btn-secondary  pt-1 pb-1">Save Change</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Create -->
+    <div class="modal fade Editprofile" id="AddUser">
+        <div class="modal-dialog">
+            <form id="formCreate" 
+                  asp-action="Create" asp-controller="Home" enctype="multipart/form-data">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">Create New User</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row row-cols-lg-2">
+                            <div class="col">
+                                <div class="img-place">
+                                    <img src="/Images/UserImage.png"
+                                         alt="Photo Profile"
+                                         class="rounded-pill img-thumbnail shadow"
+                                         onclick="changeImage(this)"
+                                         name="imgUser" id="imgUser" />
+                                    <input type="file" id="fileCreate" accept="image/*" name="file" class="d-none" >
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="naming">
+                                    <h3>
+                                        <textarea maxlength="30"
+                                                  name="Name" id="UserName" placeholder="Enter User Name"
+                                                  class="form-control-plaintext"></textarea>
+                                    </h3>
+                                    <p>
+                                        <input type="date" id="BirthDay" name="DateOfBirth"
+                                               class="form-control-plaintext">
+                                    </p>
+                                    <p>
+                                        <select maxlength="18" name="DepartmentID"
+                                                class="form-control">
+                                            @foreach (var item in TempData["AllDept"] as IEnumerable<Department>)
+                                            {
+                                                <option value="@item.ID">@item.DeptName</option>
+                                            }
+                                        </select>
+                                    </p>
+                                </div>
+                                <div class="address" id="address">
+                                    <textarea maxlength="100" placeholder="Enter Address (optional)"
+                                              name="Address" class="form-control-plaintext"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-success pt-1 pb-1">Create User</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>
+
+

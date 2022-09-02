@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <header>
+        <nav id="Navbar" class="navbar navbar-expand-lg bg-light navbar-light ps-3 pe-5">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#"><img src="/Images/logoHR.png" alt="Logo"></a>
+                <button class="navbar-toggler ms-auto border-0"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation">
+                    <i class="fa fa-search"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <div class="navbar-nav w-50 ">
+                        <div class="divSearch pe-lg-5 ps-lg-4">
+                            <div class="input-group">
+                                <button class="btn text-secondary " style="margin-left: -40px;z-index: 100;">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                                <input type="text" class="form-control"
+                                       onkeyup="clickSearch(this)" placeholder="Search...">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <ul class="navbar-nav ms-auto me-5 d-none d-lg-block">
+                    <li>
+                        <a id="navbarDropdown">
+                            <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp"
+                                 class="rounded-circle"
+                                 height="40"
+                                 width="40"
+                                 alt="Black and White Portrait of a Man"
+                                 loading="lazy" />
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <main role="main">
+        @RenderBody()
+    </main>
+
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
