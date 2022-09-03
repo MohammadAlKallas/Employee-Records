@@ -17,6 +17,8 @@
             </header>
             <div class="getUsers">
                 <div class="row row-cols-lg-5 row-cols-md-3 row-cols-2 gy-5">
+                     @if (Model != null)
+                    {
                     @foreach (var item in Model)
                     {
                         <div class="col">
@@ -43,6 +45,7 @@
                             </a>
                         </div>
                     }
+                      }
                 </div>
             </div>
         </div>
