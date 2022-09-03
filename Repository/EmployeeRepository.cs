@@ -26,7 +26,9 @@ namespace EmployeeRecords.Repositoty
         public async Task<IEnumerable<Employee>> GetAllEmployees()
         {
             var Result =await _IHttpRequest.GetJson("Employee/GetAllEmployees");
-            return JsonConvert.DeserializeObject<IEnumerable<Employee>>(Result.ToString());
+                if (Result != null)
+                return JsonConvert.DeserializeObject<IEnumerable<Employee>>(Result.ToString());
+            else return null;
         }
 
         public async Task<Employee> UpdateEmployee(int Id, Employee Employee)
